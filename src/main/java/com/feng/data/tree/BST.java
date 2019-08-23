@@ -55,7 +55,51 @@ public class BST<E extends Comparable> {
 
         if (e.compareTo(node.e) < 0 && node.left != null)
             add(node.left, e);
-        else if(e.compareTo(node.e) > 0 && node.right != null)
+        else
             add(node.right, e);
+    }
+
+    public boolean contains(E e) {
+        return contains(root, e);
+    }
+
+    private boolean contains(Node node, E e) {
+
+        if (node == null)
+            return false;
+
+        if (e.compareTo(node.e) == 0)
+            return true;
+        else if(e.compareTo(node.e) < 0)
+            return contains(node.left, e);
+        else //(e.compareTo(node.e) > 0)
+            return contains(node.right, e);
+
+    }
+
+
+    public void preOrder() {
+        myPreOrder(root);
+    }
+
+    private void myPreOrder(Node node) {
+        if (node == null)
+            return;
+
+        System.out.println(node.e);
+
+        myPreOrder(node.left);
+        myPreOrder(node.right);
+    }
+
+
+    public static void main(String[] args) {
+        BST<Integer> node = new BST();
+        int[] arr = new int[]{5,7,9,3,4};
+
+        for(int num : arr)
+            node.add(num);
+
+        node.preOrder();
     }
 }
