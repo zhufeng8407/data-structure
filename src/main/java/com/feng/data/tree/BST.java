@@ -93,6 +93,44 @@ public class BST<E extends Comparable> {
     }
 
 
+    public E minimum() {
+
+        if (root == null)
+            return null;
+
+        return minimum(root);
+    }
+
+    private E minimum(Node<E> node) {
+
+        if (node.left == null)
+            return node.e;
+
+        return minimum(node.left);
+
+    }
+
+    public E maximum() {
+        if (root == null)
+            return null;
+        
+        return maximum(root);
+    }
+
+    private E maximum(Node<E> node) {
+
+        if (node.right == null)
+            return node.e;
+
+        return maximum(node.right);
+    }
+
+
+    public void removeMinimum() {
+        
+    }
+
+
     public static void main(String[] args) {
         BST<Integer> node = new BST();
         int[] arr = new int[]{5,7,9,3,4};
@@ -100,6 +138,6 @@ public class BST<E extends Comparable> {
         for(int num : arr)
             node.add(num);
 
-        node.preOrder();
+        System.out.println(node.minimum());
     }
 }
